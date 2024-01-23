@@ -38,19 +38,67 @@ bool logic(char a[20][20], char luotDi, int x, int y)
 
     // Ngang
     count = 0;
+    for (int i = y-4; i <= y+4; i++)
+    {
+        if (i<=0) continue;
+        else if (a[x-1][i-1] == luotDi) 
+        {
+            count++;
+            if (count==5) return true;
+        }
+        else if (a[x-1][i-1] != luotDi) count=0;
+        else break;
+    }
+    
+    // Dọc
+    count = 0;
     for (int i = x-4; i <= x+4; i++)
     {
         if (i<=0) continue;
-        else if (a[i-1][y-1] == luotDi) count++;
+        else if (a[i-1][y-1] == luotDi) 
+        {
+            count++;
+            if (count==5) return true;
+        }
         else if (a[i-1][y-1] != luotDi) count=0;
         else break;
     }
+    return false;
 
-    if (count==5)
+    int col;
+
+    // Chéo phải
+    count = 0;
+    col = y-4;
+    for (int i = x-4; i <= x+4; i++)
     {
-        return true;
+        if (i<=0) continue;
+        else if (a[i-1][col-1] == luotDi) 
+        {
+            count++;
+            if (count==5) return true;
+        }
+        else if (a[i-1][col-1] != luotDi) count=0;
+        else break;
+        cout <<a[i-1][col-1]<<"\n";
+        col++;
     }
-    
-    
+        cout << endl;
+
+    // Chéo trái
+    count = 0;
+    col = y-4;
+    for (int i = x+4; i <= x-4; i--)
+    {
+        if (i>=21) continue;
+        else if (a[i-1][col-1] == luotDi) 
+        {
+            count++;
+            if (count==5) return true;
+        }
+        else if (a[i-1][col-1] != luotDi) count=0;
+        else break;
+        col++;
+    }
     return false;
 }

@@ -26,14 +26,16 @@ int main()
         bc[x-1][y-1] = luotDi;
         if (logic(bc, luotDi, x, y) == true)
         {
-            cout << luotDi << " win";
-            // break;
+            system("cls");
+            inBanCo(bc,N);
+            cout << luotDi << " win\n";
+            break;
         }
         if (luotDi == 'X')
             luotDi = 'O';
         else
             luotDi = 'X';
-        system("cls");
+        // system("cls");
 
     } while (true);
     return 0;
