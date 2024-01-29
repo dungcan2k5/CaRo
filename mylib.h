@@ -8,7 +8,7 @@ void khoiTaoBanCo (char a[20][20], int N)
         a[d-1][c-1] = '-'; 
 }
 
-void inBanCo(char a[20][20], int N)
+void inBanCo(char a[20][20], int N, int currentX, int currentY)
 {
     cout << "   ";
     for (int c = 1; c <= N; c++)
@@ -27,7 +27,10 @@ void inBanCo(char a[20][20], int N)
         else
             cout << d << " ";
         for (int c = 1; c <= N; c++)
-            cout << a[d-1][c-1] << "  ";
+        {
+            if (d==currentX && c==currentY) cout << (char) 219 << "  ";
+            else cout << a[d-1][c-1] << "  ";
+        }
         cout << endl;
     }
 }
@@ -63,7 +66,6 @@ bool logic(char a[20][20], char luotDi, int x, int y)
         else if (a[i-1][y-1] != luotDi) count=0;
         else break;
     }
-    return false;
 
     int col;
 
@@ -76,12 +78,15 @@ bool logic(char a[20][20], char luotDi, int x, int y)
         else if (a[i-1][col-1] == luotDi) 
         {
             count++;
+            col++;
             if (count==5) return true;
         }
-        else if (a[i-1][col-1] != luotDi) count=0;
+        else if (a[i-1][col-1] != luotDi) 
+        {
+            count=0;
+            col++;
+        }
         else break;
-        cout <<a[i-1][col-1]<<"\n";
-        col++;
     }
         cout << endl;
 
@@ -94,11 +99,15 @@ bool logic(char a[20][20], char luotDi, int x, int y)
         else if (a[i-1][col-1] == luotDi) 
         {
             count++;
+            col++;
             if (count==5) return true;
         }
-        else if (a[i-1][col-1] != luotDi) count=0;
+        else if (a[i-1][col-1] != luotDi) 
+        {
+            count=0;
+            col++;
+        }
         else break;
-        col++;
     }
     return false;
 }
