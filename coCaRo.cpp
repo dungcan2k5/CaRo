@@ -1,10 +1,12 @@
 #include <iostream>
 #include "mylib.h"
 #include <math.h>
+#include <conio.h>
 using namespace std;
 
 int main()
 {
+    system("cls");
     char bc[20][20];
     int N = 20;
     khoiTaoBanCo(bc,N);
@@ -18,13 +20,11 @@ int main()
         
         do
         {
-            cout << "Moi ben "<< luotDi << " di:\n";
-            cout << "\tNhap toa do muon di: ";
-            // cin >> x >> y;
-            // if (bc[x-1][y-1] == '-') break;
+            cout << "\nMoi ben "<< luotDi << " di:\n";
+            cout << "\tDung phim WASD de di chuyen\n\tBam phim Space de xac nhan chon: ";
 
-            cin >> currentKey;
-            // cout << "current x, y is: " << x << " " << y << "\n";
+            currentKey = getch();
+
             switch (currentKey)
             {
             case 'a':
@@ -39,14 +39,14 @@ int main()
             case 'w':
                 x = max(1, --x);
                 break;
-            case 'c':
+            case ' ':
                 if (bc[x-1][y-1] == '-') break;
                 break;
             default :
                 break;
             }
 
-            if (bc[x-1][y-1] == '-' && currentKey=='c') break;
+            if (bc[x-1][y-1] == '-' && currentKey==' ') break;
 
             system("cls");
             inBanCo(bc,N, x, y);
@@ -57,7 +57,7 @@ int main()
         {
             system("cls");
             inBanCo(bc,N,x+1,y);
-            cout << luotDi << " win\n";
+            cout <<"\n\tCHUC MUNG "<< luotDi << " DA CHIEN THANG!!\n";
             break;
         }
         if (luotDi == 'X')
